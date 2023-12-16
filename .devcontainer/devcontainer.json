@@ -1,0 +1,33 @@
+// https://aka.ms/devcontainer.json
+{
+    "name": "ike100 Containers",
+    "dockerComposeFile": [
+        "../docker-compose.yml"
+    ],
+    "service": "laravel.test",
+    "workspaceFolder": "/var/www/html",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "DEVSENSE.phptools-vscode",
+                "bmewburn.vscode-intelephense-client",
+                "mikestead.dotenv",
+                "amiralizadeh9480.laravel-extra-intellisense",
+                "ryannaddy.laravel-artisan",
+                "onecentlin.laravel5-snippets",
+                "onecentlin.laravel-blade",
+                "shufo.vscode-blade-formatter",
+                "codingyu.laravel-goto-view",
+                "open-southeners.laravel-pint",
+                "bradlc.vscode-tailwindcss",
+                "streetsidesoftware.code-spell-checker",
+                "eamodio.gitlens",
+                "davidanson.vscode-markdownlint",
+                "neilbrayfield.php-docblocker",
+            ],
+            "settings": {}
+        }
+    },
+    "remoteUser": "sail",
+    "postCreateCommand": "echo 'forward_agent=yes' >> /etc/ssh/ssh_config && chown -R 1000:1000 /var/www/html 2>/dev/null || true"
+}
