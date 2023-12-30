@@ -164,18 +164,22 @@
     @endauth
 </body>
 
+@auth
+    <script>
+        document.getElementById('deleteButton').addEventListener('click', function(event) {
+            const isConfirmed = window.confirm('やりたい事リストから、削除しますか？');
+
+            if (isConfirmed) {
+                return true;
+            } else {
+                event.preventDefault();
+                return false;
+            }
+        });
+    </script>
+@endauth
+
 <script>
-    document.getElementById('deleteButton').addEventListener('click', function(event) {
-        const isConfirmed = window.confirm('やりたい事リストから、削除しますか？');
-
-        if (isConfirmed) {
-            return true;
-        } else {
-            event.preventDefault();
-            return false;
-        }
-    });
-
     document.addEventListener('DOMContentLoaded', function() {
         const scrollPosition = sessionStorage.getItem('scrollPosition');
         if (scrollPosition) {
