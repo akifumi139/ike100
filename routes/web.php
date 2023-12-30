@@ -41,5 +41,11 @@ Route::controller(TaskController::class)
     ->name('tasks.')
     ->prefix('tasks')
     ->group(function () {
+        Route::get('{projectId}/create', 'create')->name('create');
+        Route::post('{projectId}/store', 'store')->name('store');
+
+        Route::get('{projectId}/edit/{taskId}', 'edit')->name('edit');
+        Route::post('{projectId}/update/{taskId}', 'update')->name('update');
+
         Route::post('{id}', 'check')->name('check');
     });

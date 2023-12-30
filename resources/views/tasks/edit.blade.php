@@ -22,20 +22,25 @@
                     <span class="bg-sky-200 py-1 ps-3 pe-2 text-3xl font-bold me-2 rounded-md text-center">
                         僕
                     </span>
-                    が新しくやりたいこと
+                    の目標
                 </div>
             </div>
         </div>
         <main class="pt-16 pb-24 ps-2 bg-white">
-            <form action="{{ route('projects.store') }}" method="POST" class="mt-20">
+            <div class="text-2xl font-light transform scaleY-120 my-0 mb-6 font-serif bg-gray-200 p-2 w-full"
+                style="font-family: 'Dela Gothic One', sans-serif;">{{ $project->title }}</div>
+            <form action="{{ route('tasks.update', ['projectId' => $project->id, 'taskId' => $task->id]) }}"
+                method="POST" class="mt-12">
                 @csrf
-                <div class="mb-4">
-                    <input type="text" id="title" name="title"
-                        class="w-full border rounded-md p-2 bg-sky-100 font-bold" placeholder="君のやりたいを..." required>
+                <div class="">
+                    <input type="text" id="name" name="name"
+                        class="w-full border rounded-md p-2 bg-sky-100 font-bold" value="{{ $task->name }}"
+                        placeholder="君の目標を...">
                 </div>
+                <div class="text-sm mt-1 ms-3">※空欄にすると目標を消せます</div>
                 <div class="text-center mt-10">
-                    <button type="submit" class="bg-blue-600 text-white w-28 py-2 px-6 rounded-md font-bold">
-                        作成する
+                    <button type="submit" class="bg-orange-600 text-white w-28 py-2 px-6 rounded-md font-bold">
+                        更新する
                     </button>
                 </div>
             </form>

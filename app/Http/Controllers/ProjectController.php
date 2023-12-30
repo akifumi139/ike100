@@ -58,8 +58,15 @@ class ProjectController extends Controller
         return view('projects.edit', compact('project'));
     }
 
-    public function update($id, Request $request)
+    public function update($no, Request $request)
     {
+        $project = Project::where('no', $no)->first();
+        $project->update([
+            'title' => $request->title,
+            'body' => $request->body,
+        ]);
+
+        return redirect()->route('projects.show', ['no' => $no]);
     }
 
     public function destroy($id)

@@ -41,62 +41,37 @@
                 </svg>
                 <span class="ms-2"> 戻る</span>
             </a>
-            <a href=""
-                class="text-lg border-2 border-teal-700 text-teal-700 w-20 py-1 px-1 rounded-md font-bold flex items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" class="text-teal-700" height="24"
-                    viewBox="0 0 24 24">
-                    <path
-                        d="M5 2a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2h3v-2H5V4h12v4h2V4a2 2 0 0 0-2-2H5Zm3 5a1 1 0 0 0 0 2h4a1 1 0 1 0 0-2H8Zm7.949 3.811a3 3 0 0 1 4.242 4.243l-5.656 5.657a1 1 0 0 1-.707.293h-2.829a1 1 0 0 1-1-1v-2.829a1 1 0 0 1 .293-.707l5.657-5.657Zm2.828 1.414a1 1 0 0 0-1.414 0l1.414 1.415a1 1 0 0 0 0-1.415Zm-1.414 2.829-1.414-1.414-3.95 3.95v1.414h1.414l3.95-3.95Z" />
-                </svg>
-                保存
-            </a>
-        </div>
-        <div style="max-width: 100%;aspect-ratio: 8/11; position: relative;text-align: center;">
-            <img style="width: 100%;position: absolute;" src="{{ asset('images/top-header.jpg') }}">
-        </div>
-        <input name="title"
-            class="text-2xl font-light transform scaleY-120 my-0 mb-6 font-serif bg-gray-200 focus:bg-sky-100 p-2 w-full"
-            value="{{ $project->title }}" style="font-family: 'Dela Gothic One', sans-serif;">
 
-        <textarea class="my-5 font-medium font-serif p-1 w-full min-h-48 bg-gray-200 focus:bg-sky-100"
-            style="font-family: 'Zen Maru Gothic', serif;">{{ $project->body }}</textarea>
-
-        <div class="container mx-auto mt-4 pb-20">
-            <h1 class="text-xl font-semibold mb-4">目標達成項目</h1>
-            @foreach ($project->tasks as $task)
-                <a href="" class="flex flex-row justify-start items-center mb-2 text-lg py-2 rounded-sm  gap-2">
-                    <form action="{{ route('projects.check', ['id' => $project->id]) }}" class="inline-block"
-                        method="POST">
-                        @csrf
-                        <button type="submit" class="">
-                            @if ($project->completed)
-                                <img class="w-8" src="{{ asset('images/task/check.png') }}">
-                            @else
-                                <img class="w-8" src="{{ asset('images/task/no-check.png') }}">
-                            @endif
-                        </button>
-                    </form>
-                    <div class="-mt-2 hover:bg-blue-100">{{ $task->name }}</div>
-                </a>
-            @endforeach
         </div>
-    </main>
-    @auth
-        <form action="{{ route('projects.update', ['no' => $project->no]) }}" method="POST" class="py-10">
+
+        <form action="{{ route('projects.update', ['no' => $project->no]) }}" method="POST">
             @csrf
-            <div class="flex justify-center mt-10">
-                <button type="submit"
-                    class="bg-teal-700 text-white w-36 py-2 px-4 rounded-md font-bold flex justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" class="text-teal-700" height="24"
-                        viewBox="0 0 24 24">
-                        <path
-                            d="M5 2a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2h3v-2H5V4h12v4h2V4a2 2 0 0 0-2-2H5Zm3 5a1 1 0 0 0 0 2h4a1 1 0 1 0 0-2H8Zm7.949 3.811a3 3 0 0 1 4.242 4.243l-5.656 5.657a1 1 0 0 1-.707.293h-2.829a1 1 0 0 1-1-1v-2.829a1 1 0 0 1 .293-.707l5.657-5.657Zm2.828 1.414a1 1 0 0 0-1.414 0l1.414 1.415a1 1 0 0 0 0-1.415Zm-1.414 2.829-1.414-1.414-3.95 3.95v1.414h1.414l3.95-3.95Z" />
-                    </svg>
-                    保存する
-                </button>
+            <div style="max-width: 100%;aspect-ratio: 8/11; position: relative;text-align: center;">
+                <img style="width: 100%;position: absolute;" src="{{ asset('images/top-header.jpg') }}">
             </div>
-        </form>
-    @endauth
+            <input name="title"
+                class="text-xl font-light transform scaleY-120 my-0 mb-6 font-serif bg-gray-200 focus:bg-sky-100 p-2 w-full"
+                value="{{ $project->title }}" style="font-family: 'Dela Gothic One', sans-serif;">
+
+            <textarea name="body" class="my-5 font-medium font-serif p-1 w-full h-36 min-h-48 bg-gray-200 focus:bg-sky-100"
+                style="font-family: 'Zen Maru Gothic', serif;">{!! nl2br($project->body) !!}</textarea>
+
+            @auth
+                <div class="flex justify-center py-5">
+                    <button type="submit"
+                        class="bg-teal-700 text-white w-36 py-2 px-4 rounded-md font-bold flex justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" class="text-teal-700" height="24"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M5 2a2 2 0 0 0-2 2v15a2 2 0 0 0 2 2h3v-2H5V4h12v4h2V4a2 2 0 0 0-2-2H5Zm3 5a1 1 0 0 0 0 2h4a1 1 0 1 0 0-2H8Zm7.949 3.811a3 3 0 0 1 4.242 4.243l-5.656 5.657a1 1 0 0 1-.707.293h-2.829a1 1 0 0 1-1-1v-2.829a1 1 0 0 1 .293-.707l5.657-5.657Zm2.828 1.414a1 1 0 0 0-1.414 0l1.414 1.415a1 1 0 0 0 0-1.415Zm-1.414 2.829-1.414-1.414-3.95 3.95v1.414h1.414l3.95-3.95Z" />
+                        </svg>
+                        保存する
+                    </button>
+                </div>
+            </form>
+        @endauth
+    </main>
+
 </body>
 
 </html>

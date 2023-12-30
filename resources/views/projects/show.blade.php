@@ -78,7 +78,7 @@
         </div>
         @auth
             <div class="py-2 flex justify-end me-2">
-                <a href="{{ route('projects.edit', ['no' => $project->id]) }}"
+                <a href="{{ route('projects.edit', ['no' => $project->no]) }}"
                     class="text-lg border-2 border-teal-700 text-teal-700 w-24 py-1 px-3 rounded-md font-bold flex items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" class="text-teal-700" height="24"
                         viewBox="0 0 24 24">
@@ -92,17 +92,24 @@
         <div style="max-width: 100%;aspect-ratio: 8/11; position: relative;text-align: center;">
             <img style="width: 100%;position: absolute;" src="{{ asset('images/top-header.jpg') }}">
         </div>
-        <h1 class="text-2xl font-light transform scaleY-120 my-0 mb-6 font-serif"
+        <h1 class="text-xl font-light transform scaleY-120 my-0 mb-6 font-serif"
             style="font-family: 'Dela Gothic One', sans-serif;">
             {{ $project->title }}
         </h1>
 
         <div class="my-5 font-medium font-serif" style="font-family: 'Zen Maru Gothic', serif;">
-            {{ $project->body }}
+            {!! nl2br($project->body) !!}
         </div>
 
         <div class="container mx-auto mt-8 pb-20">
-            <h1 class="text-xl font-semibold mb-4">目標達成項目</h1>
+
+            <div class="flex justify-between me-6 mb-4">
+                <h1 class="text-xl font-semibold">目標達成項目</h1>
+                <a href="{{ route('tasks.create', ['projectId' => $project->id]) }}" type="submit"
+                    class="bg-blue-500 text-white rounded-xl py-1 px-5 shadow-lg">
+                    <div class="text-base">追加する</div>
+                </a>
+            </div>
             @foreach ($project->tasks as $task)
                 <div class="flex flex-row justify-start items-center mb-2 text-lg py-2 rounded-sm  gap-2">
                     @auth
@@ -125,7 +132,8 @@
                             @endif
                         </div>
                     @endauth
-                    <div class="hover:bg-blue-100 p-1">{{ $task->name }}</div>
+                    <a href="{{ route('tasks.edit', ['projectId' => $project->id, 'taskId' => $task->id]) }}"
+                        class="hover:bg-blue-100 p-1 w-full">{{ $task->name }}</a>
                 </div>
             @endforeach
         </div>
@@ -152,6 +160,18 @@
             event.preventDefault();
             return false;
         }
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const scrollPosition = sessionStorage.getItem('scrollPosition');
+        if (scrollPosition) {
+            window.scrollTo(0, scrollPosition);
+        }
+    });
+
+    window.addEventListener('scroll', function() {
+        const scrollPosition = window.scrollY;
+        sessionStorage.setItem('scrollPosition', scrollPosition);
     });
 </script>
 

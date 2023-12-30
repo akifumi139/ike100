@@ -88,5 +88,18 @@
         </div>
     </div>
 </body>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const scrollPosition = sessionStorage.getItem('scrollPosition');
+        if (scrollPosition) {
+            window.scrollTo(0, scrollPosition);
+        }
+    });
+
+    window.addEventListener('scroll', function() {
+        const scrollPosition = window.scrollY;
+        sessionStorage.setItem('scrollPosition', scrollPosition);
+    });
+</script>
 
 </html>
