@@ -62,7 +62,7 @@
                             @endauth
                         </div>
                         <a href="{{ route('projects.show', ['no' => $project->no]) }}"
-                            class="text-lg rounded-sm hover:bg-blue-100 py-1 w-full">
+                            class="ps-2 text-lg rounded-sm hover:bg-blue-100 py-1 w-full">
                             {{ $project->title }}
                         </a>
                     </div>
