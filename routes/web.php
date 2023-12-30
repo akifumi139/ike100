@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::controller(TopController::class)
-    ->name('top')
+    ->name('top.')
     ->group(function () {
         Route::get('/', 'index')->name('index');
     });
@@ -18,14 +18,18 @@ Route::controller(ProjectController::class)
     ->prefix('projects')
     ->group(function () {
         Route::get('/', 'index')->name('index');
-        Route::get('create', 'create')->name('create');
-        Route::post('store', 'store')->name('store');
         Route::get('{no}', 'show')->name('show');
-        Route::get('{no}/edit', 'edit')->name('edit');
-        Route::post('{no}/update', 'update')->name('update');
 
-        Route::post('{id}', 'check')->name('check');
-        Route::delete('{id}', 'destroy')->name('destroy');
+        Route::middleware('auth:web')->group(function () {
+            Route::get('create', 'create')->name('create');
+            Route::post('store', 'store')->name('store');
+
+            Route::get('{no}/edit', 'edit')->name('edit');
+            Route::post('{no}/update', 'update')->name('update');
+
+            Route::post('{id}', 'check')->name('check');
+            Route::delete('{id}', 'destroy')->name('destroy');
+        });
     });
 
 Route::controller(AuthController::class)
@@ -40,6 +44,7 @@ Route::controller(AuthController::class)
 Route::controller(TaskController::class)
     ->name('tasks.')
     ->prefix('tasks')
+    ->middleware('auth:web')
     ->group(function () {
         Route::get('{projectId}/create', 'create')->name('create');
         Route::post('{projectId}/store', 'store')->name('store');
