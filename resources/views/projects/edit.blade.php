@@ -44,11 +44,15 @@
 
         </div>
 
-        <form action="{{ route('projects.update', ['no' => $project->no]) }}" method="POST">
+        <form action="{{ route('projects.update', ['no' => $project->no]) }}" method="POST"
+            enctype="multipart/form-data">
             @csrf
-            <div style="max-width: 100%;aspect-ratio: 8/11; position: relative;text-align: center;">
-                <img style="width: 100%;position: absolute;" src="{{ asset('images/top-header.jpg') }}">
+            <div class="mb-5 flex flex-col justify-center"
+                style="max-width: 100%;aspect-ratio: 8/11; position: relative;text-align: center;">
+                <img id="imagePreview" src="{{ asset($project->image ?? 'images/no-image.png') }}" alt="画像がありません">
+                <input type="file" class="mt-2" id="imageInput" name="image" accept="image/*">
             </div>
+
             <input name="title"
                 class="text-xl font-light transform scaleY-120 my-0 mb-6 font-serif bg-gray-200 focus:bg-sky-100 p-2 w-full"
                 value="{{ $project->title }}" style="font-family: 'Dela Gothic One', sans-serif;">
@@ -73,5 +77,26 @@
     </main>
 
 </body>
+<script>
+    const initFacePath = @js($project->image);
+    const imageForm = document.getElementById("imageForm");
+    const imageInput = document.getElementById("imageInput");
+    const imagePreview = document.getElementById("imagePreview");
+
+    imageInput.addEventListener("change", function() {
+        const file = imageInput.files[0];
+
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                imagePreview.src = e.target.result;
+            };
+
+            reader.readAsDataURL(file);
+        } else {
+            imagePreview.src = initFacePath;
+        }
+    });
+</script>
 
 </html>

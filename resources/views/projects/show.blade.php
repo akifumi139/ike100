@@ -34,7 +34,7 @@
         </div>
         <div class="top-0 w-[360px] bg-white shadow-lg rounded-lg py-3">
             <div class="flex justify-between items-center mx-auto">
-                <div class="col-1 w-28">
+                <div class="col-1">
                     @if (isset($projectBack))
                         <a href="{{ route('projects.show', ['no' => $projectBack->no]) }}" class="flex-1 flex">
                             <svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox="0 0 24 24">
@@ -61,7 +61,7 @@
                         </div>
                     @endif
                 </div>
-                <div class="col-1 w-28 flex justify-end">
+                <div class="col-1 flex justify-end">
                     @if (isset($projectNext))
                         <a href="{{ route('projects.show', ['no' => $projectNext->no]) }}" class="flex-1 flex ml-auto">
                             <span class="me-1">{{ $projectNext->title }}</span>
@@ -103,8 +103,9 @@
                 </a>
             </div>
         @endauth
+
         <div style="max-width: 100%;aspect-ratio: 8/11; position: relative;text-align: center;">
-            <img style="width: 100%;position: absolute;" src="{{ asset('images/top-header.jpg') }}">
+            <img style="width: 100%;position: absolute;" src="{{ asset($project->image ?? 'images/no-image.png') }}">
         </div>
         <h1 class="text-xl font-light transform scaleY-120 my-0 mb-6 font-serif"
             style="font-family: 'Dela Gothic One', sans-serif;">
