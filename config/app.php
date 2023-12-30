@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
 
 return [
+    'user-name' => env('INIT_NAME'),
+    'user-password' => env('INIT_PASSWORD'),
 
     /*
     |--------------------------------------------------------------------------

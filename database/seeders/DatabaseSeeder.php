@@ -18,42 +18,42 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         User::factory()->create([
-            'name' => 'test',
-            'password' => Hash::make('password'),
+            'name' =>  config('app.user-name'),
+            'password' => Hash::make(config('app.user-password')),
         ]);
 
-        Project::create([
-            "no" => 1,
-            "status" => "実行",
-            "title" => "プロジェクト１",
-            "body" => "プロジェクト１",
-        ]);
+        // Project::create([
+        //     "no" => 1,
+        //     "status" => "実行",
+        //     "title" => "プロジェクト１",
+        //     "body" => "プロジェクト１",
+        // ]);
 
-        Project::create([
-            "no" => 2,
-            "status" => "実行",
-            "title" => "プロジェクト2",
-            "body" => "プロジェクト2",
-        ]);
+        // Project::create([
+        //     "no" => 2,
+        //     "status" => "実行",
+        //     "title" => "プロジェクト2",
+        //     "body" => "プロジェクト2",
+        // ]);
 
-        Project::create([
-            "no" => 3,
-            "status" => "実行",
-            "title" => "プロジェクト3",
-            "body" => "プロジェクト3",
-        ]);
+        // Project::create([
+        //     "no" => 3,
+        //     "status" => "実行",
+        //     "title" => "プロジェクト3",
+        //     "body" => "プロジェクト3",
+        // ]);
 
-        Task::create([
-            "project_id" => 1,
-            "name" => "達成項目１",
-        ]);
-        Task::create([
-            "project_id" => 1,
-            "name" => "達成項目2",
-        ]);
-        Task::create([
-            "project_id" => 1,
-            "name" => "達成項目2",
-        ]);
+        // Task::create([
+        //     "project_id" => 1,
+        //     "name" => "達成項目１",
+        // ]);
+        // Task::create([
+        //     "project_id" => 1,
+        //     "name" => "達成項目2",
+        // ]);
+        // Task::create([
+        //     "project_id" => 1,
+        //     "name" => "達成項目2",
+        // ]);
     }
 }
