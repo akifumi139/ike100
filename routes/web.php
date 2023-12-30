@@ -18,7 +18,7 @@ Route::controller(ProjectController::class)
     ->prefix('projects')
     ->group(function () {
         Route::get('/', 'index')->name('index');
-        Route::get('{no}', 'show')->name('show');
+        Route::get('{no}/show', 'show')->name('show');
 
         Route::middleware('auth:web')->group(function () {
             Route::get('create', 'create')->name('create');
