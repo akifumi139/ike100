@@ -23,16 +23,22 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Project::create([
+            "no" => 1,
+            "status" => "実行",
             "title" => "プロジェクト１",
             "body" => "プロジェクト１",
         ]);
 
         Project::create([
+            "no" => 2,
+            "status" => "実行",
             "title" => "プロジェクト2",
             "body" => "プロジェクト2",
         ]);
 
         Project::create([
+            "no" => 3,
+            "status" => "実行",
             "title" => "プロジェクト3",
             "body" => "プロジェクト3",
         ]);

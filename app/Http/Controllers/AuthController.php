@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
     public function index()
     {
-        return view("dashboard.login");
+        return view("login");
     }
 
     public function login(LoginRequest $request)
@@ -16,10 +17,13 @@ class AuthController extends Controller
         $request->authenticate();
         $request->session()->regenerate();
 
-        return redirect()->route('dashboard.index');
+        return redirect()->route('projects.index');
     }
 
     public function logout()
     {
+        Auth::logout();
+
+        return redirect()->route('projects.index');
     }
 }

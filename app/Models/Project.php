@@ -9,6 +9,13 @@ class Project extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'no',
+        'title',
+        'body',
+        'status',
+    ];
+
     public function tasks()
     {
         return $this->hasMany(Task::class);
