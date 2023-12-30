@@ -22,7 +22,7 @@ class TaskController extends Controller
             ['name' => $request->name]
         );
 
-        return redirect()->route('projects.show', ['no' => $projectId]);
+        return redirect()->route('projects.show', ['no' => $project->no]);
     }
 
     public function check($id)
@@ -57,6 +57,6 @@ class TaskController extends Controller
             $task->delete();
         }
 
-        return redirect()->route('projects.show', ['no' => $projectId]);
+        return redirect()->route('projects.show', ['no' => $project->no]);
     }
 }
