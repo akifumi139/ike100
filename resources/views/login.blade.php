@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IKE100ダッシュボード</title>
+    <title>IKE100</title>
     @vite(['resources/css/reset.css', 'resources/css/app.css'])
 
 </head>
