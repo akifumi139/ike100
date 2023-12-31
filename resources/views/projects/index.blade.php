@@ -87,8 +87,8 @@
         <div class="fixed bottom-0 left-0 right-0 bg-white pt-1 flex justify-center items-center shadow-lg">
             @auth
                 <a href="{{ route('projects.create') }}" type="submit"
-                    class="bg-blue-500 text-white rounded-t-2xl pt-1 px-8 shadow-lg flex flex-col items-center">
-                    <svg xmlns='http://www.w3.org/2000/svg' width='26' height='27' viewBox="0 0 26 26">
+                    class="bg-blue-500 text-white rounded-2xl p-2 px-8  mb-8 shadow-lg flex flex-col items-center">
+                    <svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox="0 0 28 28">
                         <title>追加ボタン</title>
                         <g id="file_new_line" fill='none' fill-rule='nonzero'>
                             <path
