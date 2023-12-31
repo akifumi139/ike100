@@ -103,8 +103,7 @@
                 </a>
             </div>
         @endauth
-
-        <div style="max-width: 100%;aspect-ratio: 8/11; position: relative;text-align: center;">
+        <div class="mt-3" style="max-width: 100%;aspect-ratio: 8/11; position: relative;text-align: center;">
             <img style="width: 100%;position: absolute;" src="{{ asset($project->image ?? 'images/no-image.png') }}">
         </div>
         <h1 class="text-xl font-light transform scaleY-120 my-0 mb-6 font-serif"
@@ -117,13 +116,14 @@
         </div>
 
         <div class="container mx-auto mt-8 pb-20">
-
             <div class="flex justify-between me-6 mb-4">
                 <h1 class="text-xl font-semibold">目標達成項目</h1>
-                <a href="{{ route('tasks.create', ['projectId' => $project->id]) }}" type="submit"
-                    class="bg-blue-500 text-white rounded-xl py-1 px-5 shadow-lg">
-                    <div class="text-base">追加する</div>
-                </a>
+                @auth
+                    <a href="{{ route('tasks.create', ['projectId' => $project->id]) }}" type="submit"
+                        class="bg-blue-500 text-white rounded-xl py-1 px-5 shadow-lg">
+                        <div class="text-base">追加する</div>
+                    </a>
+                @endauth
             </div>
             @foreach ($project->tasks as $task)
                 <div class="flex flex-row justify-start items-center mb-2 text-lg py-2 rounded-sm  gap-2">
