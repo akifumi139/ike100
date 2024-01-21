@@ -116,7 +116,7 @@
             {!! nl2br($project->body) !!}
         </div>
 
-        <div class="container mx-auto mt-8 pb-10">
+        <div class="container mx-auto mt-8 pb-8">
             <div class="flex justify-between me-6 mb-4">
                 <h1 class="text-xl font-semibold">目標達成項目</h1>
                 @auth
@@ -127,15 +127,15 @@
                 @endauth
             </div>
             @foreach ($project->tasks as $task)
-                <div class="flex flex-row justify-start items-center mb-2 text-lg py-2 rounded-sm  gap-2">
+                <div class="flex justify-start items-center text-lg py-1 rounded-sm gap-2">
                     @auth
                         <form action="{{ route('tasks.check', ['id' => $task->id]) }}" class="inline-block" method="POST">
                             @csrf
-                            <button type="submit" class="">
+                            <button type="submit" class="flex items-center">
                                 @if ($task->completed)
                                     <img class="w-8" src="{{ asset('images/task/check.png') }}">
                                 @else
-                                    <img class="w-8" src="{{ asset('images/task/no-check.png') }}">
+                                    <img class="w-8 " src="{{ asset('images/task/no-check.png') }}">
                                 @endif
                             </button>
                         </form>
@@ -153,7 +153,7 @@
                 </div>
             @endforeach
         </div>
-        <div class="my-10">
+        <div class="mb-10">
             <div class="flex justify-between me-6 mb-4">
                 <h1 class="text-xl font-semibold">達成難易度： {{ $project->level ?? '---' }}</h1>
             </div>
@@ -179,7 +179,9 @@
             @method('DELETE')
             <div class="text-center mt-10">
                 <button type="submit" id="deleteButton"
-                    class="bg-red-400 text-white w-56 py-2 px-8 rounded-md font-bold">やりたいことを削除する</button>
+                    class="bg-red-400 text-white w-56 py-2 px-8 rounded-md font-bold">
+                    やりたいことを削除する
+                </button>
             </div>
         </form>
     @endauth
