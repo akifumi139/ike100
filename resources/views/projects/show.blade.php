@@ -153,7 +153,7 @@
                 </div>
             @endforeach
         </div>
-        <div class="mb-10">
+        <div class="mb-8">
             <div class="flex justify-between me-6 mb-4">
                 <h1 class="text-xl font-semibold">達成難易度： {{ $project->level ?? '---' }}</h1>
             </div>
@@ -163,7 +163,7 @@
         </div>
 
         @if (isset($project->review))
-            <div class="my-10">
+            <div>
                 <div class="flex justify-between me-6 mb-4">
                     <h1 class="text-xl font-semibold">目的達成</h1>
                 </div>
@@ -172,6 +172,7 @@
                 </div>
             </div>
         @endif
+        <div class="h-6"></div>
     </main>
     @auth
         <form action="{{ route('projects.destroy', ['id' => $project->id]) }}" method="POST" class="pt-24 pb-10">
