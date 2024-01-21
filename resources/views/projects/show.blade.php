@@ -103,8 +103,9 @@
                 </a>
             </div>
         @endauth
-        <div class="mt-3" style="max-width: 100%;aspect-ratio: 8/11; position: relative;text-align: center;">
-            <img style="width: 100%;position: absolute;" src="{{ asset($project->image ?? 'images/no-image.png') }}">
+        <div class="my-3"
+            style="max-width: 300px; position: relative; text-align: center; display: flex; align-items: center;">
+            <img class="mx-auto" src="{{ asset($project->image ?? 'images/no-image.png') }}" style="max-width: 100%;">
         </div>
         <h1 class="text-xl font-light transform scaleY-120 my-0 mb-6 font-serif"
             style="font-family: 'Dela Gothic One', sans-serif;">
