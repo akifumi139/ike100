@@ -13,7 +13,7 @@
     @vite(['resources/css/reset.css', 'resources/css/app.css'])
 </head>
 
-<body class="mx-auto bg-white text-black w-[360px]">
+<body class="mx-auto bg-white text-black max-w-[360px]">
     <main>
         <div class="flex justify-between items-center">
             <a href="{{ route('projects.index') }}" class="underline ms-3 flex font-semibold">
@@ -32,7 +32,7 @@
                 <img class="w-28 flex-1 pe-3" src="{{ asset('images/IKELog.png') }}">
             </a>
         </div>
-        <div class="top-0 w-[360px] bg-white shadow-lg rounded-lg py-3">
+        <div class="top-0 max-w-[360px] bg-white shadow-lg rounded-lg py-3">
             <div class="flex justify-between items-center mx-auto">
                 <div class="col-1">
                     @if (isset($projectBack))
@@ -112,11 +112,11 @@
             {{ $project->title }}
         </h1>
 
-        <div class="my-5 font-medium font-serif" style="font-family: 'Zen Maru Gothic', serif;">
+        <div class="ms-1 my-5 font-medium font-serif" style="font-family: 'Zen Maru Gothic', serif;">
             {!! nl2br($project->body) !!}
         </div>
 
-        <div class="container mx-auto mt-8 pb-20">
+        <div class="container mx-auto mt-8 pb-10">
             <div class="flex justify-between me-6 mb-4">
                 <h1 class="text-xl font-semibold">目標達成項目</h1>
                 @auth
@@ -153,6 +153,25 @@
                 </div>
             @endforeach
         </div>
+        <div class="my-10">
+            <div class="flex justify-between me-6 mb-4">
+                <h1 class="text-xl font-semibold">達成難易度： {{ $project->level ?? '---' }}</h1>
+            </div>
+            <div class="ms-1 my-5 font-medium font-serif" style="font-family: 'Zen Maru Gothic', serif;">
+                {!! nl2br($project->hurdle) !!}
+            </div>
+        </div>
+
+        @if (isset($project->review))
+            <div class="my-10">
+                <div class="flex justify-between me-6 mb-4">
+                    <h1 class="text-xl font-semibold">目的達成</h1>
+                </div>
+                <div class="ms-1 my-5 font-medium font-serif" style="font-family: 'Zen Maru Gothic', serif;">
+                    {!! nl2br($project->review) !!}
+                </div>
+            </div>
+        @endif
     </main>
     @auth
         <form action="{{ route('projects.destroy', ['id' => $project->id]) }}" method="POST" class="pt-24 pb-10">

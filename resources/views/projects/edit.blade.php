@@ -13,9 +13,9 @@
     @vite(['resources/css/reset.css', 'resources/css/app.css'])
 </head>
 
-<body class="mx-auto bg-white text-black w-[360px]">
+<body class="mx-auto bg-white text-black max-w-[360px]">
     <main>
-        <div class="top-0 w-[360px] bg-white shadow-lg rounded-lg">
+        <div class="top-0 max-w-[360px] bg-white shadow-lg rounded-lg">
             <div class="flex items-center mx-auto">
                 <div>
                     <img class="w-28 flex-1" src="{{ asset('images/IKELog.png') }}">
@@ -45,20 +45,54 @@
         </div>
 
         <form action="{{ route('projects.update', ['no' => $project->no]) }}" method="POST"
-            enctype="multipart/form-data">
+            enctype="multipart/form-data" class="w-full">
             @csrf
-            <div class="mb-5 flex flex-col justify-center"
-                style="max-width: 100%;aspect-ratio: 8/11; position: relative;text-align: center;">
+            <div class="my-3"
+                style="max-width: 300px; position: relative; text-align: center; display: flex; align-items: center;">
                 <img id="imagePreview" src="{{ asset($project->image ?? 'images/no-image.png') }}" alt="画像がありません">
                 <input type="file" class="mt-2" id="imageInput" name="image" accept="image/*">
             </div>
-
-            <input name="title"
-                class="text-xl font-light transform scaleY-120 my-0 mb-6 font-serif bg-gray-200 focus:bg-sky-100 p-2 w-full"
+            <label for="title" class="ms-1 text-lg font-bold">成し遂げたいこと</label>
+            <input id="title" name="title"
+                class="mt-1 text-xl font-light transform scaleY-120 my-0 mb-6 font-serif bg-gray-200 focus:bg-sky-100 p-2 w-full"
                 value="{{ $project->title }}" style="font-family: 'Dela Gothic One', sans-serif;">
 
-            <textarea name="body" class="my-5 font-medium font-serif p-1 w-full h-36 min-h-48 bg-gray-200 focus:bg-sky-100"
+            <label for="body" class="ms-1 text-lg font-bold">詳しく</label>
+            <textarea id="body" name="body"
+                class="mt-1 mb-5 font-medium font-serif p-1 w-full h-36 min-h-48 bg-gray-200 focus:bg-sky-100"
                 style="font-family: 'Zen Maru Gothic', serif;">{!! nl2br($project->body) !!}</textarea>
+
+            <label for="body" class="ms-1 text-lg font-bold">難易度</label>
+            <div class="ms-5 mb-5 text-xl flex gap-6">
+                <label>
+                    <input type="radio" name="level" value="大"
+                        @if ($project->level == '大') checked @endif> 大
+                </label>
+
+                <label>
+                    <input type="radio" name="level" value="中"
+                        @if ($project->level == '中') checked @endif>
+                    中
+                </label>
+
+                <label>
+                    <input type="radio" name="level" value="小"
+                        @if ($project->level == '小') checked @endif>
+                    小
+                </label>
+                <label>
+                    <input type="radio" name="level" value=""
+                        @if ($project->level == '') checked @endif>
+                    なし
+                </label>
+            </div>
+            <label for="body" class="ms-1 text-lg font-bold">難易度について</label>
+            <textarea name="hurdle" class="mt-1 mb-5 font-medium font-serif p-1 w-full h-36 min-h-48 bg-gray-200 focus:bg-sky-100"
+                style="font-family: 'Zen Maru Gothic', serif;">{!! nl2br($project->hurdle) !!}</textarea>
+
+            <label for="body" class="ms-1 text-lg font-bold">感想</label>
+            <textarea name="review" class="mt-1 mb-5 font-medium font-serif p-1 w-full h-36 min-h-48 bg-gray-200 focus:bg-sky-100"
+                style="font-family: 'Zen Maru Gothic', serif;">{!! nl2br($project->review) !!}</textarea>
 
             @auth
                 <div class="flex justify-center py-5">

@@ -67,6 +67,9 @@ class ProjectController extends Controller
         $project->update([
             'title' => $request->title,
             'body' => $request->body,
+            'level'=> $request->level!=''?$request->level:null,
+            'hurdle' =>$request->hurdle,
+            'review'=> $request->review,
             'image' => $imagePath,
         ]);
 

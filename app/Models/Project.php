@@ -14,6 +14,9 @@ class Project extends Model
         'image',
         'title',
         'body',
+        'level',
+        'hurdle',
+        'review',
         'status',
     ];
 
