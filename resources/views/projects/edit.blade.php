@@ -61,7 +61,7 @@
             <label for="body" class="ms-1 text-lg font-bold">詳しく</label>
             <textarea id="body" name="body"
                 class="mt-1 mb-5 font-medium font-serif p-1 w-full h-36 min-h-48 bg-gray-200 focus:bg-sky-100"
-                style="font-family: 'Zen Maru Gothic', serif;">{!! nl2br($project->body) !!}</textarea>
+                style="font-family: 'Zen Maru Gothic', serif;">{{$project->body}}</textarea>
 
             <label for="body" class="ms-1 text-lg font-bold">難易度</label>
             <div class="ms-5 mb-5 text-xl flex gap-6">
@@ -89,11 +89,11 @@
             </div>
             <label for="body" class="ms-1 text-lg font-bold">難易度について</label>
             <textarea name="hurdle" class="mt-1 mb-5 font-medium font-serif p-1 w-full h-36 min-h-48 bg-gray-200 focus:bg-sky-100"
-                style="font-family: 'Zen Maru Gothic', serif;">{!! nl2br($project->hurdle) !!}</textarea>
+                style="font-family: 'Zen Maru Gothic', serif;">{{$project->hurdle}}</textarea>
 
             <label for="body" class="ms-1 text-lg font-bold">感想</label>
             <textarea name="review" class="mt-1 mb-5 font-medium font-serif p-1 w-full h-36 min-h-48 bg-gray-200 focus:bg-sky-100"
-                style="font-family: 'Zen Maru Gothic', serif;">{!! nl2br($project->review) !!}</textarea>
+                style="font-family: 'Zen Maru Gothic', serif;">{{$project->review}}</textarea>
 
             @auth
                 <div class="flex justify-center py-5">
