@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Laravel\Facades\Image;
 
 class ProjectController extends Controller
 {
@@ -28,7 +31,7 @@ class ProjectController extends Controller
     public function check($id)
     {
         $project = Project::find($id);
-        $project->completed = !$project->completed;
+        $project->completed = ! $project->completed;
         $project->save();
 
         return redirect()->back();
@@ -45,7 +48,7 @@ class ProjectController extends Controller
         Project::create(
             [
                 'no' => $endNo + 1,
-                'title' => $request->title
+                'title' => $request->title,
             ]
         );
 
@@ -62,14 +65,14 @@ class ProjectController extends Controller
     public function update($no, Request $request)
     {
         $project = Project::where('no', $no)->first();
-        $imagePath =   $this->uploadImage($request, $project);
+        $imagePath = $this->uploadImage($request, $project);
 
         $project->update([
             'title' => $request->title,
             'body' => $request->body,
-            'level'=> $request->level!=''?$request->level:null,
-            'hurdle' =>$request->hurdle,
-            'review'=> $request->review,
+            'level' => $request->level != '' ? $request->level : null,
+            'hurdle' => $request->hurdle,
+            'review' => $request->review,
             'image' => $imagePath,
         ]);
 
@@ -78,15 +81,24 @@ class ProjectController extends Controller
 
     private function uploadImage($request, $project)
     {
-        $imagePath = $request->file('image');
-        if (is_null($imagePath)) {
+        $path = $request->file('image');
+        if (is_null($path)) {
             return $project->image;
         }
 
-        Storage::delete(str_replace('storage/', 'public/', $project->images));
+        if ($project->images) {
+            Storage::delete(str_replace('storage/', 'public/', $project->images));
+        }
 
-        $filePath = $imagePath->store('projects', 'public');
-        return 'storage/projects/' . basename($filePath);
+        $imagePath = $request->file('image')->store('tmp');
+
+        $image = Image::read(storage_path("app/$imagePath"));
+        $webpEncoded = $image->toWebp(80);
+
+        $webpPath = 'public/projects/' . pathinfo($imagePath, PATHINFO_FILENAME) . '.webp';
+        Storage::put($webpPath, $webpEncoded);
+
+        return 'storage/projects/' . basename($webpPath);
     }
 
     public function destroy($id)

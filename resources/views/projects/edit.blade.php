@@ -48,10 +48,11 @@
             enctype="multipart/form-data" class="w-full">
             @csrf
             <div class="my-3"
-                style="max-width: 300px; position: relative; text-align: center; display: flex; align-items: center;">
+                style="max-width: 300px; position: relative; text-align: center; align-items: center;">
                 <img id="imagePreview" src="{{ asset($project->image ?? 'images/no-image.png') }}" alt="画像がありません">
-                <input type="file" class="mt-2" id="imageInput" name="image" accept="image/*">
+                <input type="file" class="mb-6" id="imageInput" name="image" accept="image/*">
             </div>
+            
             <label for="title" class="ms-1 text-lg font-bold">成し遂げたいこと</label>
             <input id="title" name="title"
                 class="mt-1 text-xl font-light transform scaleY-120 my-0 mb-6 font-serif bg-gray-200 focus:bg-sky-100 p-2 w-full"
