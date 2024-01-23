@@ -18,6 +18,7 @@ class Project extends Model
         'hurdle',
         'review',
         'status',
+        'link',
     ];
 
     public function tasks()

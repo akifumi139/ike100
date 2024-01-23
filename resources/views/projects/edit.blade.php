@@ -47,12 +47,11 @@
         <form action="{{ route('projects.update', ['no' => $project->no]) }}" method="POST"
             enctype="multipart/form-data" class="w-full">
             @csrf
-            <div class="my-3"
-                style="max-width: 300px; position: relative; text-align: center; align-items: center;">
+            <div class="my-3" style="max-width: 300px; position: relative; text-align: center; align-items: center;">
                 <img id="imagePreview" src="{{ asset($project->image ?? 'images/no-image.png') }}" alt="画像がありません">
                 <input type="file" class="mb-6" id="imageInput" name="image" accept="image/*">
             </div>
-            
+
             <label for="title" class="ms-1 text-lg font-bold">成し遂げたいこと</label>
             <input id="title" name="title"
                 class="mt-1 text-xl font-light transform scaleY-120 my-0 mb-6 font-serif bg-gray-200 focus:bg-sky-100 p-2 w-full"
@@ -61,7 +60,7 @@
             <label for="body" class="ms-1 text-lg font-bold">詳しく</label>
             <textarea id="body" name="body"
                 class="mt-1 mb-5 font-medium font-serif p-1 w-full h-36 min-h-48 bg-gray-200 focus:bg-sky-100"
-                style="font-family: 'Zen Maru Gothic', serif;">{{$project->body}}</textarea>
+                style="font-family: 'Zen Maru Gothic', serif;">{{ $project->body }}</textarea>
 
             <label for="body" class="ms-1 text-lg font-bold">難易度</label>
             <div class="ms-5 mb-5 text-xl flex gap-6">
@@ -89,12 +88,16 @@
             </div>
             <label for="body" class="ms-1 text-lg font-bold">難易度について</label>
             <textarea name="hurdle" class="mt-1 mb-5 font-medium font-serif p-1 w-full h-36 min-h-48 bg-gray-200 focus:bg-sky-100"
-                style="font-family: 'Zen Maru Gothic', serif;">{{$project->hurdle}}</textarea>
+                style="font-family: 'Zen Maru Gothic', serif;">{{ $project->hurdle }}</textarea>
 
             <label for="body" class="ms-1 text-lg font-bold">感想</label>
             <textarea name="review" class="mt-1 mb-5 font-medium font-serif p-1 w-full h-36 min-h-48 bg-gray-200 focus:bg-sky-100"
-                style="font-family: 'Zen Maru Gothic', serif;">{{$project->review}}</textarea>
+                style="font-family: 'Zen Maru Gothic', serif;">{{ $project->review }}</textarea>
 
+            <label for="link" class="ms-1 text-lg font-bold">YouTubeのリンク（共有リンク）</label>
+            <input id="link" name="link"
+                class="mt-1 transform scaleY-120 my-0 mb-6 font-serif bg-gray-200 focus:bg-sky-100 p-2 w-full"
+                value="{{ $project->link }}">
             @auth
                 <div class="flex justify-center py-5">
                     <button type="submit"

@@ -104,7 +104,8 @@
             </div>
         @endauth
         <div class="my-3">
-            <img class="max-width: 300px; mx-auto" src="{{ asset($project->image ?? 'images/no-image.png') }}" style="max-width: 100%;">
+            <img class="max-width: 300px; mx-auto" src="{{ asset($project->image ?? 'images/no-image.png') }}"
+                style="max-width: 100%;">
         </div>
         <h1 class="text-xl font-light transform scaleY-120 my-0 mb-6 font-serif"
             style="font-family: 'Dela Gothic One', sans-serif;">
@@ -170,6 +171,14 @@
                     {!! nl2br($project->review) !!}
                 </div>
             </div>
+        @endif
+
+        @if ($project->link)
+            <iframe class="w-full mt-16" height="280" src="{{ $project->link }}" title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen>
+            </iframe>
         @endif
         <div class="h-6"></div>
     </main>

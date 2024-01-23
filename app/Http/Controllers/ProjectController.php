@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Project\EditRequest;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -62,19 +63,14 @@ class ProjectController extends Controller
         return view('projects.edit', compact('project'));
     }
 
-    public function update($no, Request $request)
+    public function update($no, EditRequest $request)
     {
         $project = Project::where('no', $no)->first();
-        $imagePath = $this->uploadImage($request, $project);
+        $params = $request->params();
+        $params['image']= $this->uploadImage($request, $project);
+        $params['link'] = $this->setYouTubeList($request);
 
-        $project->update([
-            'title' => $request->title,
-            'body' => $request->body,
-            'level' => $request->level != '' ? $request->level : null,
-            'hurdle' => $request->hurdle,
-            'review' => $request->review,
-            'image' => $imagePath,
-        ]);
+        $project->update($params);
 
         return redirect()->route('projects.show', ['no' => $no]);
     }
@@ -99,6 +95,17 @@ class ProjectController extends Controller
         Storage::put($webpPath, $webpEncoded);
 
         return 'storage/projects/' . basename($webpPath);
+    }
+
+    private function setYouTubeList($request){
+        $link = $request->link;
+
+        $needle = 'https://youtu.be/';
+        if (is_null($link) ||strpos($link, $needle) === false) {
+            return null;
+        }
+
+        return str_replace('https://youtu.be/', 'https://www.youtube.com/embed/', $link);
     }
 
     public function destroy($id)
