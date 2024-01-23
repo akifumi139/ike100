@@ -43,7 +43,7 @@
         </div>
         <div class="flex justify-center items-center mt-8">
             <a href="{{ route('projects.index') }}"
-                class="bg-sky-200 shadow-md shadow-sky-400 text-gray-800 underline font-bold tracking-widest py-2 px-5 rounded">
+                class="bg-sky-200 shadow-md shadow-sky-400 text-gray-800 font-bold tracking-widest py-2 px-5 rounded">
                 やりたいリストを見る
             </a>
         </div>
