@@ -32,11 +32,12 @@
                 <i class="fa-solid fa-arrow-rotate-left ms-4 me-2"></i>戻る
             </a>
         </div>
-        <main class="pt-4 ps-2 bg-white">
-            <div class="text-2xl font-light transform scaleY-120 my-0 mb-6 font-serif bg-gray-200 p-2 w-full"
-                style="font-family: 'Dela Gothic One', sans-serif;">{{ $project->title }}</div>
+        <main class="py-4 ps-2 bg-white">
+            <h1 class="text-xl font-light transform ms-1 mb-4" style="font-family: 'Dela Gothic One', sans-serif;">
+                <div>{{ $project->title }}</div>
+            </h1>
             <form action="{{ route('tasks.update', ['projectId' => $project->id, 'taskId' => $task->id]) }}"
-                method="POST" class="mt-12">
+                method="POST">
                 @csrf
                 <div class="">
                     <input type="text" id="name" name="name"
