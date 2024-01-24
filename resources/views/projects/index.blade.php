@@ -15,35 +15,36 @@
 
 <body class="text-black bg-white">
     <div class="mx-auto w-[360px] bg-white">
-        <div class="fixed top-0 w-[360px] px-1 py-3 bg-white shadow-lg rounded-lg">
-            <div class="flex items-center justify-between">
-                <div class="text-lg font-semibold text-gray-900">
-                    @auth
-                        <form action="{{ route('auth.logout') }}" class="inline-block text-black" method="POST">
-                            @csrf
+        <div class="fixed top-0 w-[360px] px-1 pt-3 bg-white shadow-lg rounded-lg">
+            <div class="text-lg font-semibold text-gray-900 mx-auto mb-2">
+                @auth
+                    <form action="{{ route('auth.logout') }}" class="inline-block text-black" method="POST">
+                        @csrf
 
-                            <button type="submit" class="bg-sky-200 py-1 px-2 text-3xl font-bold me-2 rounded-md">
-                                僕
-                            </button>
-                        </form>
-                    @else
-                        <a href="{{ route('auth.login') }}"
-                            class="bg-green-200 py-1 ps-3 pe-1 text-3xl font-bold rounded-md me-2">
-                            IKE
-                        </a>
-                    @endauth
-                    がやりたい
-                    <span
-                        class="text-3xl mx-2 border-black border-b-2 px-1 text-black">{{ $projects->count() <= 100 ? $projects->count() . '/100' : $projects->count() }}</span>のこと
-                </div>
+                        <button type="submit" class="bg-sky-200 py-1 px-2 text-3xl font-bold me-2 rounded-md">
+                            僕
+                        </button>
+                    </form>
+                @else
+                    <a href="{{ route('auth.login') }}"
+                        class="bg-green-200 py-1 ps-3 pe-1 text-3xl font-bold rounded-md me-2">
+                        IKE
+                    </a>
+                @endauth
+                がやりたい
+                <span
+                    class="text-3xl mx-2 border-black border-b-2 px-1 text-black">{{ $projects->count() <= 100 ? $projects->count() . '/100' : $projects->count() }}</span>のこと
+            </div>
+            <div class="flex items-end justify-end text-lg mb-1 me-4">
+                達成<span class="mx-2 text-2xl font-bold">{{ $projects->where('completed')->count() }}</span>件
             </div>
         </div>
-        <div class="mt-20 py-2">
+        <div class="mt-24 py-2">
             <a href="{{ route('top.index') }}" class="text-lg text-teal-700 py-1 px-1 rounded-md font-bold">
                 <i class="fa-solid fa-arrow-rotate-left ms-4 me-2"></i>トップページに戻る
             </a>
         </div>
-        <main class="mt-2 pb-28 ps-2 bg-white">
+        <main class="pb-28 ps-2 bg-white">
             <div class="container mx-auto flex flex-col gap-2">
                 @foreach ($projects as $project)
                     <a href="{{ route('projects.show', ['no' => $project->no]) }}"
