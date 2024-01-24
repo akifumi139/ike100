@@ -32,7 +32,9 @@
                             IKE
                         </a>
                     @endauth
-                    がやりたい<span class="text-3xl mx-2 border-black border-b-2 px-1 text-black">100</span>のこと
+                    がやりたい
+                    <span
+                        class="text-3xl mx-2 border-black border-b-2 px-1 text-black">{{ $projects->count() <= 100 ? $projects->count() . '/100' : $projects->count() }}</span>のこと
                 </div>
             </div>
         </div>
