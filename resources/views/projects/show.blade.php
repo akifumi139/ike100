@@ -81,30 +81,31 @@
             </div>
             <div class="flex flex-col gap-1">
                 @foreach ($project->tasks as $task)
-                    <div class="flex justify-start items-center text-lg py-1 rounded-sm hover:bg-blue-100 p-1">
+                    <div class="flex text-lg rounded-sm hover:bg-blue-100 px-2 p-1">
                         @auth
                             <form action="{{ route('tasks.check', ['id' => $task->id]) }}" class="inline-block"
                                 method="POST">
                                 @csrf
                                 <button type="submit" class="flex items-center">
                                     @if ($task->completed)
-                                        <i class="fa-regular fa-circle-check text-[30px] me-2"></i>
+                                        <i class="fa-regular fa-circle-check text-[28px] me-2"></i>
                                     @else
-                                        <i class="fa-regular fa-circle text-[30px] me-2"></i>
+                                        <i class="fa-regular fa-circle text-[28px] me-2"></i>
                                     @endif
                                 </button>
                             </form>
+                            <a href="{{ route('tasks.edit', ['projectId' => $project->id, 'taskId' => $task->id]) }}"
+                                class="w-full">{{ $task->name }}</a>
                         @else
                             <div class="inline-block">
                                 @if ($task->completed)
-                                    <i class="fa-regular fa-circle-check text-[30px] me-2"></i>
+                                    <i class="fa-regular fa-circle-check text-[28px] me-2"></i>
                                 @else
-                                    <i class="fa-regular fa-circle text-[30px] me-2"></i>
+                                    <i class="fa-regular fa-circle text-[28px] me-2"></i>
                                 @endif
                             </div>
+                            <span class="w-full">{{ $task->name }}</span>
                         @endauth
-                        <a href="{{ route('tasks.edit', ['projectId' => $project->id, 'taskId' => $task->id]) }}"
-                            class="w-full">{{ $task->name }}</a>
                     </div>
                 @endforeach
             </div>
