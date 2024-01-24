@@ -23,9 +23,9 @@
                 <img class="w-28 flex-1 pe-3" src="{{ asset('images/IKELog.png') }}">
             </a>
         </div>
-        <div class="top-0 max-w-[360px] bg-white shadow-lg rounded-lg py-3">
-            <div class="flex justify-between items-center mx-auto">
-                <div class="col-1">
+        <div class="top-0 max-w-[360px] bg-white shadow-lg rounded-lg py-2">
+            <div class="flex justify-start mr-auto">
+                <div>
                     @if (isset($projectBack))
                         <a href="{{ route('projects.show', ['no' => $projectBack->no]) }}" class="flex-1 flex mr-auto">
                             <i class="fa-solid fa-circle-left text-xl ms-2"></i>
@@ -35,7 +35,9 @@
                         <i class="fa-regular fa-circle-xmark text-xl ms-2 me-1"></i>
                     @endif
                 </div>
-                <div class="col-1 flex justify-end">
+            </div>
+            <div class="mt-1 flex justify-end ml-auto">
+                <div>
                     @if (isset($projectNext))
                         <a href="{{ route('projects.show', ['no' => $projectNext->no]) }}" class="flex-1 flex ml-auto">
                             <span class="me-1">{{ $projectNext->title }}</span>
