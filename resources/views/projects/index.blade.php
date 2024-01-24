@@ -14,10 +14,10 @@
 </head>
 
 <body class="text-black bg-white">
-    <div class="mx-auto w-[360px] bg-white rounded-lg ">
-        <div class="fixed top-0 w-[360px] p-3 bg-white shadow-lg rounded-lg">
+    <div class="mx-auto w-[360px] bg-white">
+        <div class="fixed top-0 w-[360px] px-1 py-3 bg-white shadow-lg rounded-lg">
             <div class="flex items-center justify-between">
-                <div class="text-lg font-semibold tracking-wide text-gray-900">
+                <div class="text-lg font-semibold text-gray-900">
                     @auth
                         <form action="{{ route('auth.logout') }}" class="inline-block text-black" method="POST">
                             @csrf
