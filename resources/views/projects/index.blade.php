@@ -43,7 +43,7 @@
                 <i class="fa-solid fa-arrow-rotate-left ms-4 me-2"></i>トップページに戻る
             </a>
         </div>
-        <main class="mt-2 pb-24 ps-2 bg-white">
+        <main class="mt-2 pb-28 ps-2 bg-white">
             <div class="container mx-auto flex flex-col gap-2">
                 @foreach ($projects as $project)
                     <a href="{{ route('projects.show', ['no' => $project->no]) }}"
