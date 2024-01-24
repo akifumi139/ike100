@@ -41,11 +41,20 @@
                 by ike
             </div>
         </div>
-        <div class="flex justify-center items-center mt-8">
-            <a href="{{ route('projects.index') }}"
-                class="bg-sky-200 shadow-md shadow-sky-400 text-gray-800 font-bold tracking-widest py-2 px-5 rounded">
-                やりたいリストを見る
-            </a>
+        <div class="mt-8 flex flex-col gap-5">
+            <div class="flex justify-center items-center">
+                <a href="{{ route('projects.index') }}"
+                    class="bg-sky-200 shadow-md shadow-sky-400 hover:bg-sky-400 text-gray-800 font-bold tracking-widest py-2 px-5 rounded">
+                    <i class="fa-solid fa-list-check text-lg me-2"></i> やりたいリストを見る
+                </a>
+            </div>
+
+            <div class="flex justify-center items-center">
+                <a href="https://youtube.com/@IKE-zy8pb?si=j2igaAkI6yHo3hEf" target="_blank" rel="noopener noreferrer"
+                    class="bg-red-200 shadow-md shadow-red-400 hover:bg-red-400 text-gray-800 font-bold py-2 px-3 rounded">
+                    <i class="fa-brands fa-youtube text-lg me-2"></i>IKEログのYouTubeを見る
+                </a>
+            </div>
         </div>
     </main>
 </body>
