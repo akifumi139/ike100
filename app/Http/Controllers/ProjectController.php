@@ -32,7 +32,7 @@ class ProjectController extends Controller
     public function check($id)
     {
         $project = Project::find($id);
-        $project->completed = ! $project->completed;
+        $project->completed = !$project->completed;
         $project->save();
 
         return redirect()->back();
@@ -67,18 +67,18 @@ class ProjectController extends Controller
     {
         $project = Project::where('no', $no)->first();
         $params = $request->params();
-        $params['image']= $this->uploadImage($request, $project);
-        $params['link'] = $this->setYouTubeList($request);
+        $params['image'] = $this->uploadImage('image', $request, $project);
+
+        $params['link'] = $this->setEndCard($request, $project);
 
         $project->update($params);
 
         return redirect()->route('projects.show', ['no' => $no]);
     }
 
-    private function uploadImage($request, $project)
+    private function uploadImage($path, $request, $project)
     {
-        $path = $request->file('image');
-        if (is_null($path)) {
+        if (is_null($request->file($path))) {
             return $project->image;
         }
 
@@ -86,7 +86,7 @@ class ProjectController extends Controller
             Storage::delete(str_replace('storage/', 'public/', $project->images));
         }
 
-        $imagePath = $request->file('image')->store('tmp');
+        $imagePath = $request->file($path)->store('tmp');
 
         $image = Image::read(storage_path("app/$imagePath"));
         $webpEncoded = $image->toWebp(80);
@@ -97,11 +97,31 @@ class ProjectController extends Controller
         return 'storage/projects/' . basename($webpPath);
     }
 
-    private function setYouTubeList($request){
+    private function setEndCard($request, $project)
+    {
+        $link = $request->link;
+
+        if (is_null($link)) {
+            return null;
+        }
+
+        if ($request->hasFile('link')) {
+            return $this->uploadImage('link', $request, $project);
+        }
+
+        if (strpos($link, 'https://youtu.be/') === false) {
+            return null;
+        }
+
+        return str_replace('https://youtu.be/', 'https://www.youtube.com/embed/', $link);
+    }
+
+    private function getYouTubeList($request)
+    {
         $link = $request->link;
 
         $needle = 'https://youtu.be/';
-        if (is_null($link) ||strpos($link, $needle) === false) {
+        if (is_null($link) || strpos($link, $needle) === false) {
             return null;
         }
 

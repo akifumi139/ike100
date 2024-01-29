@@ -36,8 +36,8 @@
         <form action="{{ route('projects.update', ['no' => $project->no]) }}" method="POST"
             enctype="multipart/form-data" class="w-full">
             @csrf
-            <div class="my-3" style="max-width: 300px; position: relative; text-align: center; align-items: center;">
-                <img id="imagePreview" src="{{ asset($project->image ?? 'images/no-image.png') }}" alt="画像がありません">
+            <div class="my-3">
+                <img id="imagePreview" src="{{ asset($project->image ?? '/images/no-image.png') }}" alt="画像がありません">
                 <input type="file" class="mb-6" id="imageInput" name="image" accept="image/*">
             </div>
 
@@ -96,10 +96,31 @@
             <textarea name="review" class="mt-1 mb-5 font-medium font-serif p-1 w-full h-36 min-h-48 bg-gray-200 focus:bg-sky-100"
                 style="font-family: 'Zen Maru Gothic', serif;">{{ $project->review }}</textarea>
 
-            <label for="link" class="ms-1 text-lg font-bold">YouTubeのリンク（共有リンク）</label>
-            <input id="link" name="link"
-                class="mt-1 transform scaleY-120 my-0 mb-6 font-serif bg-gray-200 focus:bg-sky-100 p-2 w-full"
-                value="{{ $project->link }}">
+            <div class="mt-3">
+                <div class="flex justify-end me-3 -mb-6">
+                    <button id="toggleBtn" type="button"
+                        class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-3 rounded-full">
+                        切り替え
+                    </button>
+                </div>
+                <div id="uiContainer">
+                    <div id="ui1" class="">
+                        <label for="link" class="ms-1 text-lg font-bold">YouTubeのリンク（共有リンク）</label>
+                        <input id="link" name="link"
+                            class="mt-1 transform scaleY-120 my-0 mb-6 font-serif bg-gray-200 focus:bg-sky-100 p-2 w-full"
+                            value="{{ strpos($project->link, 'https://www.youtube.com/') === 0 ? $project->decodeYouTubeLink() : '' }}">
+                    </div>
+                    <div id="ui2" class="hidden">
+                        <label for="link" class="ms-1 text-lg font-bold">エンドカード</label>
+                        <img id="imageLinkPreview" class="max-h-64"
+                            src="{{ strpos($project->link, 'https://www.youtube.com/') === 0 || !isset($project->link) ? asset('images/no-image.png') : asset($project->image) }}"
+                            alt="画像がありません">
+                        <input type="file" class="mb-6" id="imageLinkInput" name="link" accept="image/*">
+
+                    </div>
+                </div>
+            </div>
+
             @auth
                 <div class="flex justify-center py-5">
                     <button type="submit" class="bg-teal-700 text-white w-36 py-2 px-4 rounded-md font-bold">
@@ -129,6 +150,52 @@
             reader.readAsDataURL(file);
         } else {
             imagePreview.src = initFacePath;
+        }
+    });
+</script>
+<script>
+    const toggleBtn = document.getElementById('toggleBtn');
+    const ui1 = document.getElementById('ui1');
+    const ui2 = document.getElementById('ui2');
+    let currentUI = 1;
+
+    const switchLinkArea = () => {
+        if (currentUI === 1) {
+            ui1.classList.add('hidden');
+            ui2.classList.remove('hidden');
+            currentUI = 2;
+        } else {
+            ui1.classList.remove('hidden');
+            ui2.classList.add('hidden');
+            currentUI = 1;
+        }
+    }
+
+    const link = @js($project->decodeYouTubeLink());
+
+    if (link && !link.startsWith("https://youtu.be/")) {
+        switchLinkArea();
+    }
+
+    toggleBtn.addEventListener('click', switchLinkArea);
+</script>
+<script>
+    const initLinkPath = @js(asset($project->image ?? './images/no-image.png'));
+    const imageLinkInput = document.getElementById("imageLinkInput");
+    const imageLinkPreview = document.getElementById("imageLinkPreview");
+
+    imageLinkInput.addEventListener("change", function() {
+        const file = imageLinkInput.files[0];
+
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                imageLinkPreview.src = e.target.result;
+            };
+
+            reader.readAsDataURL(file);
+        } else {
+            imageLinkPreview.src = initLinkPath;
         }
     });
 </script>

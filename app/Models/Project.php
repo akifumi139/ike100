@@ -25,4 +25,12 @@ class Project extends Model
     {
         return $this->hasMany(Task::class);
     }
+
+    public function decodeYouTubeLink()
+    {
+        if (is_null($this->link) || strpos($this->link, 'https://www.youtube.com/embed/') === false) {
+            return null;
+        }
+        return str_replace('https://www.youtube.com/embed/', 'https://youtu.be/', $this->link);
+    }
 }

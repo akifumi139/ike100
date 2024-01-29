@@ -132,12 +132,15 @@
             </div>
         @endif
 
-        @if ($project->link)
+        @if (strpos($project->link, 'https://www.youtube.com/') === 0)
             <iframe class="w-full mt-16" height="280" src="{{ $project->link }}" title="YouTube video player"
                 frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowfullscreen>
             </iframe>
+        @elseif($project->link)
+            <img class="my-4 mx-auto max-h-64" src="{{ asset($project->link ?? 'images/no-image.png') }}"
+                style="max-width: 100%;">
         @endif
         <div class="h-6"></div>
     </main>
