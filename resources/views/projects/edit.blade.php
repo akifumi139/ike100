@@ -52,28 +52,41 @@
                 style="font-family: 'Zen Maru Gothic', serif;">{{ $project->body }}</textarea>
 
             <label for="body" class="ms-1 text-lg font-bold">難易度</label>
-            <div class="ms-5 mb-5 text-xl flex gap-6">
-                <label>
-                    <input type="radio" name="level" value="大"
-                        @if ($project->level == '大') checked @endif> 大
-                </label>
+            <div class="grid place-items-center pt-2 pb-6">
+                <div class="grid grid-cols-4 gap-2 rounded-xl bg-gray-200 p-2">
+                    <div>
+                        <input type="radio" name="level" id="大" value="大" class="peer hidden"
+                            checked />
+                        <label for="大"
+                            class="block cursor-pointer select-none rounded-xl py-2 px-5 text-center peer-checked:bg-blue-500 peer-checked:font-bold peer-checked:text-white">
+                            大
+                        </label>
+                    </div>
 
-                <label>
-                    <input type="radio" name="level" value="中"
-                        @if ($project->level == '中') checked @endif>
-                    中
-                </label>
+                    <div>
+                        <input type="radio" name="level" id="中" value="中" class="peer hidden" />
+                        <label for="中"
+                            class="block cursor-pointer select-none rounded-xl py-2 px-5 text-center peer-checked:bg-blue-500 peer-checked:font-bold peer-checked:text-white">
+                            中
+                        </label>
+                    </div>
 
-                <label>
-                    <input type="radio" name="level" value="小"
-                        @if ($project->level == '小') checked @endif>
-                    小
-                </label>
-                <label>
-                    <input type="radio" name="level" value=""
-                        @if ($project->level == '') checked @endif>
-                    なし
-                </label>
+                    <div>
+                        <input type="radio" name="level" id="小" value="小" class="peer hidden" />
+                        <label for="小"
+                            class="block cursor-pointer select-none rounded-xl py-2 px-5 text-center peer-checked:bg-blue-500 peer-checked:font-bold peer-checked:text-white">
+                            小
+                        </label>
+                    </div>
+
+                    <div>
+                        <input type="radio" name="level" id="なし" value="なし" class="peer hidden" />
+                        <label for="なし"
+                            class="block cursor-pointer select-none rounded-xl py-2 px-5 text-center peer-checked:bg-blue-500 peer-checked:font-bold peer-checked:text-white">
+                            なし
+                        </label>
+                    </div>
+                </div>
             </div>
             <label for="body" class="ms-1 text-lg font-bold">難易度について</label>
             <textarea name="hurdle" class="mt-1 mb-5 font-medium font-serif p-1 w-full h-36 min-h-48 bg-gray-200 focus:bg-sky-100"
@@ -101,7 +114,6 @@
 </body>
 <script>
     const initFacePath = @js($project->image);
-    const imageForm = document.getElementById("imageForm");
     const imageInput = document.getElementById("imageInput");
     const imagePreview = document.getElementById("imagePreview");
 
