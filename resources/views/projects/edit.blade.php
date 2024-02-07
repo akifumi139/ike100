@@ -36,11 +36,22 @@
         <form action="{{ route('projects.update', ['no' => $project->no]) }}" method="POST"
             enctype="multipart/form-data" class="w-full">
             @csrf
-            <div class="my-3">
-                <img id="imagePreview" src="{{ asset($project->image ?? '/images/no-image.png') }}" alt="画像がありません">
-                <input type="file" class="mb-6" id="imageInput" name="image" accept="image/*">
+            <div class="flex justify-end me-3 mb-6">
+                <a href="{{ route('projects.images.show', ['no' => $project->no]) }}"
+                    class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-3 rounded-full">
+                    画像の入れ替え
+                </a>
             </div>
 
+            @if ($project->images->isEmpty())
+                <img class="w-64 h-auto mr-4" src="{{ asset('/images/no-image.png') }}" alt="画像がありません">
+            @endif
+            <div class="flex overflow-x-auto p-4 gap-2">
+                @foreach ($project->images as $image)
+                    <img class="mx-auto object-contain" style="width: 90%; height: auto; max-width: none;"
+                        src="{{ asset($image->name) }}">
+                @endforeach
+            </div>
             <label for="title" class="ms-1 text-lg font-bold">成し遂げたいこと</label>
             <input id="title" name="title"
                 class="mt-1 text-xl font-light transform scaleY-120 my-0 mb-6 font-serif bg-gray-200 focus:bg-sky-100 p-2 w-full"
@@ -133,26 +144,7 @@
     </main>
 
 </body>
-<script>
-    const initFacePath = @js($project->image);
-    const imageInput = document.getElementById("imageInput");
-    const imagePreview = document.getElementById("imagePreview");
 
-    imageInput.addEventListener("change", function() {
-        const file = imageInput.files[0];
-
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                imagePreview.src = e.target.result;
-            };
-
-            reader.readAsDataURL(file);
-        } else {
-            imagePreview.src = initFacePath;
-        }
-    });
-</script>
 <script>
     const toggleBtn = document.getElementById('toggleBtn');
     const ui1 = document.getElementById('ui1');

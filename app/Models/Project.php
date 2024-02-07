@@ -33,4 +33,9 @@ class Project extends Model
         }
         return str_replace('https://www.youtube.com/embed/', 'https://youtu.be/', $this->link);
     }
+
+    public function images()
+    {
+        return $this->hasMany(ProjectImage::class);
+    }
 }

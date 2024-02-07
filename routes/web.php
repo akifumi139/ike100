@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\ProjectImageController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\TopController;
 use Illuminate\Support\Facades\Route;
@@ -31,7 +32,15 @@ Route::controller(ProjectController::class)
             Route::delete('{id}', 'destroy')->name('destroy');
         });
     });
-
+Route::controller(ProjectImageController::class)
+    ->name('projects.images.')
+    ->prefix('projects/images')
+    ->group(function () {
+        Route::get('{no}', 'show')->name('show');
+        Route::get('{no}/add', 'create')->name('create');
+        Route::post('{no}/add', 'add')->name('add');
+        Route::delete('{no}/destroy/{imageNo}', 'destroy')->name('destroy');
+    });
 Route::controller(AuthController::class)
     ->name('auth.')
     ->group(function () {

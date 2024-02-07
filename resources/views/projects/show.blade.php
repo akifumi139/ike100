@@ -58,9 +58,14 @@
                 </a>
             </div>
         @endauth
-        <div class="my-3">
-            <img class="max-width: 300px; mx-auto" src="{{ asset($project->image ?? 'images/no-image.png') }}"
-                style="max-width: 100%;">
+        @if ($project->images->isEmpty())
+            <img class="max-h-full  mx-auto" src="{{ asset('/images/no-image.png') }}" alt="画像がありません">
+        @endif
+        <div class="flex overflow-x-auto p-4 gap-2">
+            @foreach ($project->images as $image)
+                <img class="mx-auto object-contain" style="width: 90%; height: auto; max-width: none;"
+                    src="{{ asset($image->name) }}">
+            @endforeach
         </div>
         <h1 class="text-xl font-light transform scaleY-120 my-0 mb-6 font-serif"
             style="font-family: 'Dela Gothic One', sans-serif;">
