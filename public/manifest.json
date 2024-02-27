@@ -1,0 +1,16 @@
+{
+    "name": "ike100",
+    "short_name": "ike100",
+    "start_url": "/index.php",
+    "background_color": "#FFFFFF",
+    "description": "ike、100の目標",
+    "display": "fullscreen",
+    "theme_color": "#FFFFFF",
+    "icons": [
+        {
+            "src": "logo.PNG",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
