@@ -17,7 +17,7 @@
     <main>
         <div class="flex justify-between items-center">
             <a href="{{ route('projects.index') }}" class="text-lg text-teal-700 py-1 px-1 rounded-md font-bold">
-                <i class="fa-solid fa-arrow-rotate-left mx-2"></i>やりたいことリストに戻る
+                <i class="fa-solid fa-arrow-rotate-left mx-2"></i>リストに戻る
             </a>
             <a href="{{ route('top.index') }}">
                 <img class="w-28 flex-1 pe-3" src="{{ asset('images/IKELog.png') }}">
