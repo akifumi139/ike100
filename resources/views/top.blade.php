@@ -27,7 +27,7 @@
 
 <body class="mx-auto bg-white text-black" style="max-width:400px;">
     <div style="max-width: 100%;aspect-ratio: 7/8; position: relative;text-align: center;">
-        <img style="width: 100%;position: absolute;" src="{{ asset('images/top-header.jpg') }}">
+        <img style="width: 100%;position: absolute;" src="{{ asset('images/top-header.jpg') }}?version=2">
         <img style="width: 42%;position: absolute;top: 32px;left: 50%;transform: translateX(-50%);"
             src="{{ asset('images/IKELog.png') }}">
         <menu class="flex gap-16 text-center" style="position: absolute;top:32%;left: 50%;transform: translateX(-50%);">
