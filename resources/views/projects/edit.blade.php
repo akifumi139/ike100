@@ -124,8 +124,7 @@
                     <div id="ui2" class="hidden">
                         <label for="link" class="ms-1 text-lg font-bold">エンドカード</label>
                         <img id="imageLinkPreview" class="max-h-64"
-                            src="{{ strpos($project->link, 'https://www.youtube.com/') === 0 || !isset($project->link) ? asset('images/no-image.png') : asset($project->image) }}"
-                            alt="画像がありません">
+                            src="{{ asset($project->link ?? 'images/no-image.png') }}" alt="画像がありません">
                         <input type="file" class="mb-6" id="imageLinkInput" name="link" accept="image/*">
 
                     </div>
@@ -163,7 +162,7 @@
         }
     }
 
-    const link = @js($project->decodeYouTubeLink());
+    const link = @js($project->link);
 
     if (link && !link.startsWith("https://youtu.be/")) {
         switchLinkArea();

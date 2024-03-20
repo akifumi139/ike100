@@ -106,7 +106,15 @@ class ProjectController extends Controller
         }
 
         if ($request->hasFile('link')) {
-            return $this->uploadImage('link', $request, $project);
+            $imagePath = $request->file('link')->store('tmp');
+
+            $image = Image::read(storage_path("app/$imagePath"));
+            $webpEncoded = $image->toWebp(80);
+
+            $webpPath = 'public/projects/' . pathinfo($imagePath, PATHINFO_FILENAME) . '.webp';
+            Storage::put($webpPath, $webpEncoded);
+
+            return 'storage/projects/' . basename($webpPath);
         }
 
         if (strpos($link, 'https://youtu.be/') === false) {
