@@ -116,18 +116,6 @@ class ProjectController extends Controller
         return str_replace('https://youtu.be/', 'https://www.youtube.com/embed/', $link);
     }
 
-    private function getYouTubeList($request)
-    {
-        $link = $request->link;
-
-        $needle = 'https://youtu.be/';
-        if (is_null($link) || strpos($link, $needle) === false) {
-            return null;
-        }
-
-        return str_replace('https://youtu.be/', 'https://www.youtube.com/embed/', $link);
-    }
-
     public function destroy($id)
     {
         Project::destroy($id);
