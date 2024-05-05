@@ -19,6 +19,12 @@ return new class extends Migration
             $table->string('status')->default('実行');
             $table->text('body')->nullable();
             $table->boolean('completed')->default(false);
+
+            $table->string('link')->nullable();
+
+            $table->string('level')->nullable();
+            $table->text('hurdle')->nullable();
+            $table->text('review')->nullable();
             $table->timestamps();
         });
     }

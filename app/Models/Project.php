@@ -11,7 +11,6 @@ class Project extends Model
 
     protected $fillable = [
         'no',
-        'image',
         'title',
         'body',
         'level',
