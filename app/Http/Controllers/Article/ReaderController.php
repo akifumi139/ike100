@@ -8,7 +8,9 @@ class ReaderController
 {
     public function index()
     {
-        $articles = Article::with('project')->paginate(10);
+        $articles = Article::with('project')
+            ->where('status', '公開')
+            ->paginate(10);
 
         return view('blog.index', [
             'articles' => $articles
