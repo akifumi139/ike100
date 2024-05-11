@@ -9,20 +9,18 @@
           href="{{ route('blog.editor.index') }}">
           <span class="tracking-widest font-bold">戻る</span>
         </a>
-        <form method="POST" action="{{ route('blog.editor.delete', ['id' => $article->id]) }}">
-          @csrf
-          @method('DELETE')
-          <button
-            class="py-2 px-6 text-gray-800 border-2 border-rose-500 rounded-full shadow-xl transition duration-300 ease-in-out hover:bg-rose-600 hover:text-white"
-            type="submit" href="{{ route('blog.editor.index') }}">
-            <span class="tracking-widest font-bold">記事を消す</span>
-          </button>
-        </form>
       </div>
       <form class="mt-4 sm:mt-6 flex flex-col gap-3" id="editerForm"
         action="{{ route('blog.editor.update', ['id' => $article->id]) }}" method="POST" enctype="multipart/form-data">
         @csrf
-
+        <div class="flex justify-end">
+          <button
+            class="md:w-48 text-xl border-2 border-green-600 text-green-600
+          hover:bg-green-600 hover:text-white font-semibold py-2 px-4 rounded-2xl -mb-6 transition duration-300"
+            type="submit">
+            更新する
+          </button>
+        </div>
         <label class=" text-gray-700 font-semibold mb-4">タイトル
           <input
             class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
@@ -80,16 +78,18 @@
             {!! $article->content !!}
           </div>
         </label>
-        <div class="flex justify-center">
-          <button
-            class="w-48 text-xl border-2 border-green-600 text-green-600 hover:bg-green-600 hover:text-white font-semibold py-2 px-4 rounded-2xl -mb-6 transition duration-300"
-            type="submit">
-            更新する
-          </button>
-        </div>
+      </form>
+      <form class="flex justify-center" method="POST"
+        action="{{ route('blog.editor.delete', ['id' => $article->id]) }} mt-20">
+        @csrf
+        @method('DELETE')
+        <button
+          class="py-2 px-6 text-gray-800 border-2 border-rose-500 rounded-full shadow-xl transition duration-300 ease-in-out hover:bg-rose-600 hover:text-white"
+          type="submit" href="{{ route('blog.editor.index') }}">
+          <span class="tracking-widest font-bold">記事を消す</span>
+        </button>
       </form>
     </div>
-    <script></script>
     <script>
       const initLinkPath = @js(asset($project->image ?? './images/no-image.png'));
       const imageLinkInput = document.getElementById("imageLinkInput");
