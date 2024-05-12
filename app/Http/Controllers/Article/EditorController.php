@@ -49,7 +49,6 @@ class EditorController
     public function update(int $id, UpdateRequest $request)
     {
         $params = $request->params();
-
         Article::where('id', $id)
             ->update($params);
 

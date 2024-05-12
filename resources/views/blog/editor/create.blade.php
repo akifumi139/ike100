@@ -8,28 +8,36 @@
         href="{{ route('blog.editor.index') }}">
         <span class="tracking-widest font-bold">戻る</span>
       </a>
-      <form class="mt-4 sm:mt-6 flex flex-col gap-3" id="editerForm" action="{{ route('blog.editor.store') }}" method="POST"
+      <form class="mt-4 sm:mt-6 flex flex-col gap-4" id="editerForm" action="{{ route('blog.editor.store') }}" method="POST"
         enctype="multipart/form-data">
         @csrf
-        <label class=" text-gray-700 font-semibold mb-4">タイトル
+        <label class="text-gray-700 font-semibold">ヘッダー画像
+          <input class="block" id="imageLinkInput" name="header_image" type="file" accept="image/*">
+          <div class="flex justify-center">
+            <img class="max-h-64" id="imageLinkPreview" src="{{ asset('images/no-image.png') }}" alt="画像がありません">
+          </div>
+        </label>
+        <label class=" text-gray-700 font-semibold">タイトル
           <input
             class="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
             name="title" type="text" placeholder="記事のタイトル">
         </label>
-        <div class="mb-4">
+        <div>
           <span class="text-gray-700 font-semibold mb-2 block">公開状態</span>
-          <div class="flex items-center">
-            <label class="mr-4">
-              <input class="" id="status" name="status" type="radio" value="公開" checked>
-              公開
-            </label>
-            <label>
-              <input id="status" name="status" type="radio" value="非公開">
-              非公開
-            </label>
+          <div class="flex">
+            <div class="flex items-center ps-4 border border-gray-200 rounded w-24 ">
+              <input class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300" id="status-1" name="status"
+                type="radio" value="公開">
+              <label class="w-full py-2 ms-1 text-sm font-medium text-gray-900" for="status-1">公開</label>
+            </div>
+            <div class="flex items-center ps-4 border border-gray-200 rounded w-24">
+              <input class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 " id="status-2" name="status"
+                type="radio" value="非公開" checked>
+              <label class="w-full py-2 ms-1 text-sm font-medium text-gray-900" for="status-2">非公開</label>
+            </div>
           </div>
         </div>
-        <label class=" text-gray-700 font-semibold mb-4">プロジェクトタグ
+        <label class="text-gray-700 font-semibold">プロジェクトタグ
           <div class="relative">
             <select
               class="block appearance-none w-full bg-white border border-gray-300 text-gray-700 py-3 px-4 pr-8 rounded-md leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -48,15 +56,8 @@
           </div>
         </label>
 
-        <label class="text-gray-700 font-semibold">ヘッダー画像
-          <input class="block" id="imageLinkInput" name="header_image" type="file" accept="image/*">
-          <div class="flex justify-center">
-            <img class="max-h-64" id="imageLinkPreview" src="{{ asset('images/no-image.png') }}" alt="画像がありません">
-          </div>
-        </label>
-
         <div>
-          <label class="text-gray-700 font-semibold my-4">内容
+          <label class="text-gray-700 font-semibold">内容
             <textarea id="content" name="content" hidden></textarea>
           </label>
           <div

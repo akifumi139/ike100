@@ -26,7 +26,7 @@ class UpdateRequest extends FormRequest
         $params = [
             'title' => $this->title,
             'content' => $this->input('content'),
-            'status' => '公開',
+            'status' => $this->status,
         ];
 
         $headerImage = Image::upload($this, 'header_image',);
