@@ -24,14 +24,14 @@
             name="title" type="text" placeholder="記事のタイトル">
         </label>
         <div class="mb-4">
-          <span class="text-gray-700 font-semibold mb-2 block">公開状態:</span>
+          <span class="text-gray-700 font-semibold mb-2 block">公開状態</span>
           <div class="flex items-center">
             <label class="mr-4">
-              <input class="mr-2" id="status" name="status" type="radio" value="公開">
+              <input class="" id="status" name="status" type="radio" value="公開" checked>
               公開
             </label>
             <label>
-              <input class="mr-2" id="status" name="status" type="radio" value="非公開">
+              <input id="status" name="status" type="radio" value="非公開">
               非公開
             </label>
           </div>
@@ -55,15 +55,13 @@
           </div>
         </label>
 
-        <label class="text-gray-700 font-semibold mb-4">ヘッダー画像
+        <label class="text-gray-700 font-semibold">ヘッダー画像
           <input class="block" id="imageLinkInput" name="header_image" type="file" accept="image/*">
           <div class="flex justify-center">
-            <img class="max-h-64" id="imageLinkPreview" src="{{ asset($project->link ?? 'images/no-image.png') }}"
-              alt="画像がありません">
+            <img class="max-h-64" id="imageLinkPreview" src="{{ asset('images/no-image.png') }}" alt="画像がありません">
           </div>
         </label>
 
-        </label>
         <label class="text-gray-700 font-semibold my-4">内容
           <textarea id="content" name="content" hidden></textarea>
           <div
