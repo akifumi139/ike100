@@ -4,7 +4,7 @@
     "start_url": "/",
     "background_color": "#FFFFFF",
     "description": "ike、100の目標と日常",
-    "display": "fullscreen",
+    "display": "minimal-ui",
     "theme_color": "#FFFFFF",
     "icons": [
         {
