@@ -69,14 +69,13 @@
     </div>
     <div class="mt-6 flex flex-col gap-5">
       <div class="flex justify-center items-center">
-        <a class="w-64 text-center bg-sky-200 shadow-md shadow-sky-400  hover:shadow-none hover:bg-sky-400 text-gray-800 font-bold tracking-widest py-2 px-5 rounded"
+        <a class="w-72 ps-4 bg-sky-200 shadow-md shadow-sky-400  hover:shadow-none hover:bg-sky-400 text-gray-800 font-bold tracking-widest py-2 px-5 rounded"
           href="{{ route('projects.index') }}">
           <i class="fa-solid fa-list-check text-lg me-2"></i> やりたいリストを見る。
         </a>
       </div>
-
       <div class="flex justify-center items-center">
-        <a class="w-64 text-center bg-lime-200 shadow-md shadow-lime-400 hover:shadow-none hover:bg-lime-400 text-gray-800 font-bold tracking-widest py-2 px-5 rounded"
+        <a class="w-72 ps-4 bg-lime-200 shadow-md shadow-lime-400 hover:shadow-none hover:bg-lime-400 text-gray-800 font-bold tracking-widest py-2 px-5 rounded"
           href="{{ route('blog.index') }}">
           <i class="fa-solid  fa-book text-lg me-2"></i> 日常をのぞく。
         </a>
