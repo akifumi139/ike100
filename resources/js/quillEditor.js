@@ -28,10 +28,7 @@ function quillEditor(make_id) {
         // 太字,アンダーバー
         ['bold', 'underline'],
         // 文字色
-        [{
-            'color': []
-        },
-        ],
+        [{ 'color': [] }],
         // リスト
         [{
             'list': 'ordered'

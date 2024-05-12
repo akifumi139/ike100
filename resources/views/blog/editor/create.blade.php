@@ -55,13 +55,16 @@
           </div>
         </label>
 
-        <label class="text-gray-700 font-semibold my-4">内容
-          <textarea id="content" name="content" hidden></textarea>
+        <div>
+          <label class="text-gray-700 font-semibold my-4">内容
+            <textarea id="content" name="content" hidden></textarea>
+          </label>
           <div
             class="text-xl w-full border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
             id="quill_editor">
           </div>
-        </label>
+        </div>
+
         <div class="flex justify-center">
           <button
             class="md:w-48 text-xl border-2 border-green-600 text-green-600 hover:bg-green-600 hover:text-white font-semibold py-2 px-4 rounded-2xl -mb-6 transition duration-300"
