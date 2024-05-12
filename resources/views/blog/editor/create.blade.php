@@ -10,13 +10,6 @@
       </a>
       <form class="mt-4 sm:mt-6 flex flex-col gap-3" id="editerForm" action="{{ route('blog.editor.store') }}" method="POST"
         enctype="multipart/form-data">
-        <div class="flex justify-end">
-          <button
-            class="md:w-48 text-xl border-2 border-green-600 text-green-600 hover:bg-green-600 hover:text-white font-semibold py-2 px-4 rounded-2xl -mb-6 transition duration-300"
-            type="submit">
-            投稿する
-          </button>
-        </div>
         @csrf
         <label class=" text-gray-700 font-semibold mb-4">タイトル
           <input
@@ -69,7 +62,13 @@
             id="quill_editor">
           </div>
         </label>
-
+        <div class="flex justify-center">
+          <button
+            class="md:w-48 text-xl border-2 border-green-600 text-green-600 hover:bg-green-600 hover:text-white font-semibold py-2 px-4 rounded-2xl -mb-6 transition duration-300"
+            type="submit">
+            投稿する
+          </button>
+        </div>
       </form>
     </div>
     <script>
