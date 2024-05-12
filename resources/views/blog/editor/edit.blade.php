@@ -10,12 +10,12 @@
           <span class="tracking-widest font-bold">戻る</span>
         </a>
       </div>
-      <form class="flex justify-end" method="POST" action="{{ route('blog.editor.delete', ['id' => $article->id]) }} mt-20">
+      <form class="flex justify-end" method="POST" action="{{ route('blog.editor.delete', ['id' => $article->id]) }}">
         @csrf
         @method('DELETE')
         <button
           class="py-2 px-6 text-gray-800 border-2 border-rose-500 rounded-full shadow-xl transition duration-300 ease-in-out hover:bg-rose-600 hover:text-white"
-          type="submit" href="{{ route('blog.editor.index') }}">
+          type="submit">
           <span class="tracking-widest font-bold">記事を消す</span>
         </button>
       </form>
@@ -71,7 +71,7 @@
         </label>
 
         </label>
-        <label class="text-gray-700 font-semibold my-4">内容
+        <label class="text-gray-700 font-semibold">内容
           <textarea id="content" name="content" hidden></textarea>
           <div
             class="text-xl w-full border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500"
@@ -79,7 +79,7 @@
             {!! $article->content !!}
           </div>
         </label>
-        <div class="flex justify-center">
+        <div class="flex justify-center mb-10">
           <button
             class="md:w-48 text-xl border-2 border-green-600 text-green-600
           hover:bg-green-600 hover:text-white font-semibold py-2 px-4 rounded-2xl -mb-6 transition duration-300"
