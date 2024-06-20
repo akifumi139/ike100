@@ -69,14 +69,14 @@ class ProjectController
         $project = Project::where('no', $no)->first();
         $params = $request->params();
 
-        $params['link'] = $this->setEndCard($request, $project);
+        $params['link'] = $this->setEndCard($request);
 
         $project->update($params);
 
         return to_route('projects.show', ['no' => $no]);
     }
 
-    private function setEndCard($request, $project)
+    private function setEndCard($request)
     {
         $link = $request->link;
 
