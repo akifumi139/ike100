@@ -65,7 +65,8 @@
       <div class="grid place-items-center pt-2 pb-6">
         <div class="grid grid-cols-4 gap-2 rounded-xl bg-gray-200 p-2">
           <div>
-            <input class="peer hidden" id="大" name="level" type="radio" value="大" checked />
+            <input class="peer hidden" id="大" name="level" type="radio" value="大"
+              {{ $project->level == '大' ? 'checked' : '' }} />
             <label
               class="block cursor-pointer select-none rounded-xl py-2 px-5 text-center peer-checked:bg-blue-500 peer-checked:font-bold peer-checked:text-white"
               for="大">
@@ -74,7 +75,8 @@
           </div>
 
           <div>
-            <input class="peer hidden" id="中" name="level" type="radio" value="中" />
+            <input class="peer hidden" id="中" name="level" type="radio" value="中"
+              {{ $project->level == '中' ? 'checked' : '' }} />
             <label
               class="block cursor-pointer select-none rounded-xl py-2 px-5 text-center peer-checked:bg-blue-500 peer-checked:font-bold peer-checked:text-white"
               for="中">
@@ -83,7 +85,8 @@
           </div>
 
           <div>
-            <input class="peer hidden" id="小" name="level" type="radio" value="小" />
+            <input class="peer hidden" id="小" name="level" type="radio" value="小"
+              {{ $project->level == '小' ? 'checked' : '' }} />
             <label
               class="block cursor-pointer select-none rounded-xl py-2 px-5 text-center peer-checked:bg-blue-500 peer-checked:font-bold peer-checked:text-white"
               for="小">
@@ -92,7 +95,8 @@
           </div>
 
           <div>
-            <input class="peer hidden" id="なし" name="level" type="radio" value="なし" />
+            <input class="peer hidden" id="なし" name="level" type="radio" value="なし"
+              {{ $project->level == 'なし' ? 'checked' : '' }} />
             <label
               class="block cursor-pointer select-none rounded-xl py-2 px-5 text-center peer-checked:bg-blue-500 peer-checked:font-bold peer-checked:text-white"
               for="なし">
